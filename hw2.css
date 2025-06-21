@@ -109,7 +109,7 @@ p {
 .error {
     text-align: center;
     font-family: 'Helvetica', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 12px;
     color: red;
 }
@@ -134,17 +134,17 @@ p {
 table.output,
 tr.output,
 td.output {
-    width: 90%;
-    background-color: #62A4F0;
+    width: 500px;
+    background-color: #FFEEDD;
     padding: 10px;
     border-spacing: 2px;
-    border-radius: 20px;
+    border-radius: 0px;
     color: black;
 }
 
 td.output {
-    width: 90%;
-    background-color: #62A4F0;
+    width: 500px;
+    background-color: #FFEEDD;
     padding: 10px;
     border-spacing: 2px;
 }
