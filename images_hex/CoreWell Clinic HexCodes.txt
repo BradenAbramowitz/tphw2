@@ -1,0 +1,11 @@
+CoreWell Clinic 
+
+Font: Montserrat & Montserrat Bold
+
+HexCodes
+
+orange: #F25C3D
+navy: #1A2E45
+white/background: #FDFCF9
+peach/background: #FFEEDD
+blue/background: #62A4F0
