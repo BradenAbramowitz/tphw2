@@ -50,12 +50,13 @@ Description: Homework 2 HTML file
                         <input type="text" 
                                name="fname" 
                                id="fname" 
-                               minlength="2"
+                               minlength="1"
                                maxlength="30" 
                                required 
-                               title="letter, apostrophe, hyphen, and dashes only" 
-                               pattern="[A-Za-z'-]{2,30}"
+                               title="letter, apostrophe, and dashes only" 
+                               pattern="[A-Za-z'-]{1,30}"
                                onblur="validatefname()"
+                               oninput="validatefname()"
                                placeholder="Braden"
                         />
                     </br>
@@ -70,9 +71,10 @@ Description: Homework 2 HTML file
                                name="minitial" 
                                id="minitial" 
                                maxlength="1" 
-                               title="Letters only, one character"
+                               title="Letters only, one character, no numbers, blank/null allowed"
                                pattern="[A-Za-z]{0,1}"
                                onblur="validateminitial()"
+                               oninput="validateminitial()"
                                placeholder="D"
                         />
                     </br>
@@ -86,12 +88,13 @@ Description: Homework 2 HTML file
                         <input type="text" 
                                name="lname" 
                                id="lname" 
-                               minlength="2"
+                               minlength="1"
                                maxlength="30" 
                                required 
-                               title="Letters, apostrophe, hyphen, and dashes only"
-                               pattern="[A-Za-z'-]{2,30}"
+                               title="Letters, apostrophe, numbers 2-5, and dashes only"
+                               pattern="[A-Za-z'-]{1,30}"
                                onblur="validatelname()" 
+                               oninput="validatelname()"
                                placeholder="Abramowitz"
                         />
                     </br>
@@ -150,6 +153,7 @@ Description: Homework 2 HTML file
                                title="Numbers only, format: 123-45-6789"
                                placeholder="123-45-6789"
                                onblur="validateSSN()"
+                               oninput="validateSSN()"
                         />
                         </br>
                         <span id="ssn_error" class="error"></span>
@@ -176,6 +180,7 @@ Description: Homework 2 HTML file
                                title="please enter your address"
                                placeholder="1234 Main St"
                                onblur="validateAddress1()"
+                               oninput="validateAddress1()"
                         />
                         </br>
                         <span id="address1_error" class="error"></span>
@@ -208,6 +213,7 @@ Description: Homework 2 HTML file
                             title="please enter your city"
                             placeholder="Houston"
                             onblur="validateCity()"
+                            oninput="validateCity()"
                     />
                     <br />
                     <span id="city_error" class="error"></span>
@@ -288,6 +294,7 @@ Description: Homework 2 HTML file
                            placeholder="12345"
                            pattern="^\d{5}(-\d{4})?$"
                            onblur="validateZipCode()"
+                           oninput="validateZipCode()"
                     />
                     </br>
                     <span id="zcode_error" class="error"></span>
@@ -307,6 +314,7 @@ Description: Homework 2 HTML file
                            placeholder="name@domain.tld"
                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                            onblur="validateEmail()"
+                           oninput="validateEmail()"
                     />
                     </br>
                     <span id="email_error" class="error"></span>
@@ -326,6 +334,7 @@ Description: Homework 2 HTML file
                            title="please enter your phone number"
                            placeholder="(123) 456-7890"
                            onblur="validatePhoneNumber()"
+                           oninput="validatePhoneNumber()"
                     />
                     </br>
                     <span id="phone_error" class="error"></span>
@@ -414,12 +423,14 @@ Description: Homework 2 HTML file
              <tr>
                 <td class="tdl"><label for="range">How would you rate your overall health?<br/>(Rate from 1 to 10)</label></td>
                 <td>
-                    <input type="range" 
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="range" 
                            id="range" 
                            name="range" 
                            min="1" 
                            max="10" 
                            value="0"
+                           oninput="updateRangeValue(this.value)"
                     />
                     <span id="range_slider"></span>
                 </td>
@@ -441,11 +452,12 @@ Description: Homework 2 HTML file
                            id="uid" 
                            name="uid" 
                            minlength="5"
-                           maxlength="20"
+                           maxlength="30"
                            required
                            title="user ID must contain letters and numbers only, 5-20 characters, and cannot start with a number"
                            placeholder="Your user ID"
                            onblur="validateUserID()"
+                           oninput="validateUserID()"
                     />
                     </br>
                     <span id="uid_error" class="error"></span>
@@ -458,10 +470,10 @@ Description: Homework 2 HTML file
                     <input type="password" 
                            id="pword" 
                            name="pword" 
-                           minlength="10"
+                           minlength="8"
                            maxlength="30"
                            required
-                           title="password must contain at least one uppercase letter, one lowercase letter, one number, and one special character, and be 10-30 characters long"
+                           title="password must contain at least one uppercase letter, one lowercase letter, one number, and one special character, and be 8-30 characters long"
                            placeholder="Your password"
                            onblur="validatePassword()"
                            oninput="validatePassword()"
@@ -478,7 +490,7 @@ Description: Homework 2 HTML file
                     <input type="password" 
                            id="con_pword" 
                            name="con_pword" 
-                           minlength="10"
+                           minlength="8"
                            maxlength="30"
                            required
                            title="please reenter your password"
@@ -495,11 +507,26 @@ Description: Homework 2 HTML file
             <tr>
                 <td class="tdl" colspan="4">
                     <center>
-                        <input type="submit" id="submit" name="submit" value="Submit" style="font-family: 'Montserrat', sans-serif;">
+                        <input type="submit"
+                        id="submit" 
+                        name="submit" 
+                        value="Submit" 
+                        style="font-family: 'Montserrat', sans-serif;">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="button" id="review" name="review" value="Review" onclick="reviewForm()" style="font-family: 'Montserrat', sans-serif;">
+                        
+                        <input type="button" 
+                        id="review" 
+                        name="review" 
+                        value="Review" 
+                        onclick="reviewForm()" 
+                        style="font-family: 'Montserrat', sans-serif;">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="reset" id="reset" name="reset" value="Reset" style="font-family: 'Montserrat', sans-serif;">
+
+                        <input type="reset" 
+                        id="reset" 
+                        name="reset" 
+                        value="Reset" 
+                        style="font-family: 'Montserrat', sans-serif;">
                     </center>
                 </td>
             </tr>
@@ -516,7 +543,7 @@ Description: Homework 2 HTML file
         <span id="con_pword_error"></span>
     </div>
 <center>
-<p id="showinput"></p> <!-- Placeholder for JavaScript to display input values -->
+<p id="showInput"></p> <!-- Placeholder for JavaScript to display input values -->
 </center>
 </div>
     </center>
