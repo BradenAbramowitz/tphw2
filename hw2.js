@@ -16,7 +16,10 @@ let slider = document.getElementById("range");
 let output = document.getElementById("range-slider");
 output.innerHTML = slider.value;
 
-slider.oninput = function() {output.innerHTML = this.value;};
+function updateSliderValue() {
+    document.getElementById("range-slider").innerHTML = slider.value;
+}
+slider.oninput = updateSliderValue;
 
 //dob validation js code
 function validateDOB() {
@@ -70,66 +73,77 @@ function validateSSN() {
 }
 
 //address validation js code
-function validateAddress() {
-    const address = document.getElementById("address").value;
-    // Check if the address is empty
-    if (address.trim() === "") {
-        alert("Please enter a valid address.");
+function validateAddress1() {
+    const address = document.getElementById("address1").value;
+    const error = document.getElementById("address1_error");
+    if (!address || address.trim().length < 5) {
+        error.innerHTML = "Please enter address";
         return false;
     }
-    // Check for minimum length
-    if (address.length < 5) {
-        alert("Address must be at least 5 characters long.");
+    error.innerHTML = "";
+    return true;
+}
+
+//city validation js code
+function validateCity() {
+    const city = document.getElementById("city").value;
+    const error = document.getElementById("city_error");
+    if (!city || city.length < 2) {
+        error.innerHTML = "Please enter city";
         return false;
     }
+    error.innerHTML = "";
     return true;
 }
 
 //zip code validation js code
 function validateZipCode() {
-    const zipCode = document.getElementById("zip").value;
-    // Regular expression to match US ZIP code format
-    if (!zipCode) {
-        document.getElementById("zcode_error").innerHTML = "Please enter a valid ZIP code.";
+    const zip = document.getElementById("zcode").value;
+    const error = document.getElementById("zcode_error");
+    if (!zip) {
+        error.innerHTML = "Zip code can't be blank";
         return false;
     }
     const zipRegex = /^\d{5}(-\d{4})?$/;
-    if (!zipRegex.test(zipCode)) {
-        alert("Please enter a valid ZIP code in the format XXXXX or XXXXX-XXXX.");
+    if (!zipRegex.test(zip)) {
+        error.innerHTML = "Zip must be 5 or 9 digits";
         return false;
     }
+    error.innerHTML = "";
     return true;
 }
 
 //email validation js code
 function validateEmail() {
     const email = document.getElementById("email").value;
-    // Regular expression to match email format
+    const error = document.getElementById("email_error");
     if (!email) {
-        document.getElementById("email_error").innerHTML = "Please enter a valid email address.";
+        error.innerHTML = "Email can't be blank";
         return false;
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        alert("Please enter a valid email address.");
+        error.innerHTML = "Please enter a valid email address.";
         return false;
     }
+    error.innerHTML = "";
     return true;
 }
 
 //phone number validation js code
 function validatePhoneNumber() {
     const phone = document.getElementById("phone").value;
-    // Regular expression to match US phone number format
+    const error = document.getElementById("phone_error");
     if (!phone) {
-        document.getElementById("phone_error").innerHTML = "Please enter a valid phone number.";
+        error.innerHTML = "Phone number can't be blank";
         return false;
     }
     const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
     if (!phoneRegex.test(phone)) {
-        alert("Please enter a valid phone number in the format (XXX) XXX-XXXX.");
+        error.innerHTML = "Format: (123) 456-7890";
         return false;
     }
+    error.innerHTML = "";
     return true;
 }
 
@@ -178,8 +192,8 @@ function validateConfirmPassword() {
 }
 
 //re-display user input back to user js code
-function reviewInput() {
-    var formcontent = document.getElementById("signup_form");
+function reviewForm() {
+    var formcontent = document.getElementById("signup");
     var formoutput;
     var i;
     formoutput = "<table class='output'><th colspan='2'>Review Your Information</th>";
@@ -220,11 +234,11 @@ function reviewInput() {
     }
     if (formoutput.length > 0) {
         formoutput = formoutput + "</table>";
-        document.getElementById("review_output").innerHTML = formoutput;
+        document.getElementById("showInput").innerHTML = formoutput;
     }
 }
 
 //remove user input js code
 function removeReview() {
-    document.getElementById("review_output").innerHTML = "";
+    document.getElementById("showInput").innerHTML = "";
 }
